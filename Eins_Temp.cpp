@@ -2,22 +2,22 @@
 #include <cmath>
 #include <cstdlib>
 
-const double R = 8.3446;
-const double C = 18.4758;
+const double R = 8.3446;//constante de los gases ideales
+const double C = 18.4758;//capacidad calorifica molar (CCM)
 
-double f(double x);
+double f(double x);//esta función es la CCM menos la expresión de Einstein haciendo un cambio de variable de 1/x=T_E/T
 template <class fptr>
-double Newton(double x, fptr fun, double eps);
+double Newton(double x, fptr fun, double eps);//método de Newton para calcular raíces
 
   int main(void)
 {
-  std::cout << Newton(0.2, f, 0.000001) << "\n";
+  std::cout << Newton(0.2, f, 0.000001) << "\n";//donde la función se hace cero es donde la expresión de Einstein y la CCM son iguales
   return 0;
 }
 
 double f(double x)
 {
-  return C - 3*R*(1.0/x)*(1.0/x)*(std::pow(M_E, 1.0/x)/((std::pow(M_E, 1.0/x)-1)*(std::pow(M_E, 1.0/x)-1)));
+  return C - 3*R*(1.0/x)*(1.0/x)*(std::pow(M_E, 1.0/x)/((std::pow(M_E, 1.0/x)-1.0)*(std::pow(M_E, 1.0/x)-1.0)));
 }
 
 template <class fptr>
